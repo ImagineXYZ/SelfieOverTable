@@ -1,0 +1,19 @@
+Forward Design Changes Report
+-----------------------------
+
+Report Written:     Thursday, July 06, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\pcb\SelfiOverTable.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\pcb\Button.pcb
+Design Title:       
+Created:            31/05/2017 07:25:24 p.m.
+Last Saved:         06/07/2017 01:21:35 p.m.
+Editing Time:       972 min
+Units:              mm (precision 3)
+
+Added component reference "C3" of component "CAPElectr", package "SOL".
+
+Connected pin "C3-2" to net "GND".
+Connected pin "C3-1" to net "3V3".
+
+
+End Of Report.
