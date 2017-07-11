@@ -1,13 +1,13 @@
 Design Rule Check Report
 ------------------------
 
-Report Written:     Thursday, July 06, 2017
+Report Written:     Tuesday, July 11, 2017
 Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\pcb\SelfiOverTable.prj
 Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\pcb\Button.pcb
 Design Title:       
 Created:            31/05/2017 07:25:24 p.m.
-Last Saved:         06/07/2017 01:27:54 p.m.
-Editing Time:       984 min
+Last Saved:         11/07/2017 02:29:46 p.m.
+Editing Time:       1180 min
 Units:              mm (precision 3)
 
 
