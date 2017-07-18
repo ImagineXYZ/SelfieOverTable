@@ -16,6 +16,7 @@ import signal #Kill Signal
 #Modulo Camera
 import picamera
 camera = picamera.PiCamera()
+camera.resolution = (1440,1080)
 camera.hflip = True
 camera.vflip = True
 
