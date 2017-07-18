@@ -1,0 +1,18 @@
+Schematic and PCB Check Report
+------------------------------
+
+Report Written:     Wednesday, July 12, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\pcb\SelfiOverTable.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\pcb\Button.pcb
+Design Title:       
+Created:            31/05/2017 07:25:24 p.m.
+Last Saved:         12/07/2017 12:54:12 p.m.
+Editing Time:       1323 min
+Units:              mm (precision 3)
+
+
+Checking integrity of Schematic and Pcb designs in project "SelfiOverTable"
+===========================================================================
+
+
+End Of Report.

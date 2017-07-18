@@ -1,0 +1,133 @@
+PLOT REPORT
+-----------
+
+Report File:        D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button (PCB - PLOT REPORT).txt
+Report Written:     Thursday, June 01, 2017
+Design Path:        D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button.pcb
+Design Title:       
+Created:            31-May-17 7:25:24 PM
+Last Saved:         01-Jun-17 12:29:28 PM
+Editing Time:       234 min
+Units:              mm (precision 3)
+
+
+Device Settings
+===============
+
+
+Gerber Settings
+===============
+
+    Leading zero suppression.
+    G01 assumed throughout.
+    Line termination <*> <CR> <LF>.
+    3.5 format absolute inches.
+    Format commands defined in Gerber file.
+    Aperture table defined in Gerber file.
+
+
+Drill Settings
+==============
+
+    Excellon Format 1    Format 3.5 absolute in inches.
+    No zero suppression.
+
+
+Plots Output
+============
+
+    Plot Job: "D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button.mop"
+
+
+Gerber Output
+=============
+
+D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button - Bottom Copper.gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 137.80
+    D13    Round 98.43
+    D14    Square 118.11
+    D15    Round 118.11
+    D16    Round 27.56
+    D70    Round 98.43
+
+NC Drill Output
+===============
+
+D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button - Drill Data - [Through Hole].drl
+
+    Output:
+    ---------------------------
+    Plated Round Drill Holes
+    Plated Slots
+    Plated Board Outlines
+
+    Tool  Size         Count   ID
+    ------------------------------------
+    T001  000.03543 in 8     B
+    T002  000.04331 in 3     C
+    T003  000.12598 in 4     A
+    ------------------------------------
+    Total              15
+    ------------------------------------
+
+D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button - Drill Data - [Through Hole] (Unplated).drl
+
+    Output:
+    -----------------------------
+    Unplated Round Drill Holes
+    Unplated Slots
+    Unplated Board Outlines
+
+    Tool  Size         Count   ID
+    ------------------------------------
+    T001  000.02500 in 1
+    ------------------------------------
+    Total              1
+    ------------------------------------
+
+
+Gerber Output
+=============
+
+D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button - Drill Ident Drawing - [Through Hole].gbr
+
+    Layers:
+    ------------------
+    [Through Hole]
+
+
+Drill Ident Drawing
+===================
+
+    Drill Plated Size Shape ID
+    -----------------------------------
+    126   Y      100  Round A
+    35    Y      100  Round B
+    43    Y      100  Round C
+
+    D-Code Shape  (thou)
+    -----------------------
+    D18    Round 100.00
+    D19    Round 5.00
+
+Gerber Output
+=============
+
+D:\Usuarios\husan\Documents\ImagineXYZ\XCities\SOS\Buttom\pcb\Button - Button Border.gbr
+
+    Layers:
+    ------------------
+    Board Outlines
+
+    D-Code Shape  (thou)
+    -----------------------
+    D19    Round 5.00
+
+End Of Report.
