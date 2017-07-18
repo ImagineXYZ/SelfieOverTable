@@ -1,0 +1,11 @@
+Uso de herramienta wpa_cli 
+https://scottlinux.com/2016/01/17/configure-wifi-on-raspberry-pi-raspbian-debian-linux-via-command-line/
+
+wpa_cli
+scan
+scan_results
+add_network 0
+set_network 0 ssid "<ssid>"
+set_network 0 psk "<psk"
+enable network 0
+save_config

@@ -1,0 +1,33 @@
+Instalar Biblioteca de BCM2835 para RPi
+(El SoC es BCM2837 pero el módulo de bcm2835 es compatible)
+
+https://drfasching.com/public/data/libbcm2835_1.50_armhf.deb
+
+Activar el interfaz SPI en el /boot/config.txt 
+Se puede usar la herramienta: sudo raspi_config
+
+Requisitos
+RPi.GPIO y spidev
+
+Instalar spidev
+git clone https://github.com/Gadgetoid/py-spidev
+cd py-spidev
+sudo make install
+
+Instalar la Biblioteca para el RFM69 python (Código Original, no es necesario este paso pero se puede probar)
+git clone https://github.com/etrombly/RFM69
+
+Conexiones por defecto
+
+3v3 - 17
+DIO0 - 18 (GPIO24)
+MOSI - 19
+MISO - 21
+CLK - 23
+NSS - 24
+Ground - 25
+RESET - 29
+
+La compatibilidad con otros módulos RF depende de la configuración de los registros.
+Posiblemente tega que cambiar el valor de algunos registros para que pueda comunicarse correctamente.
+
