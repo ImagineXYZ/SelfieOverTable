@@ -1,0 +1,32 @@
+El desarrollo de los programas para el SelfieOverTable en el RPi está basado en git.
+Para no tener que descargar todos los archivos del proyecto se puede descargar únicamente el folder con el contenido relacionado con el RPi3.
+Ref: http://jasonkarns.com/blog/subdirectory-checkouts-with-git-sparse-checkout/
+Ref: https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository
+
+Create and initialize your new repository:
+
+mkdir <repo> && cd <repo>
+git init
+git remote add –f <name> <url>
+Enable sparse-checkout:
+
+git config core.sparsecheckout true
+Configure sparse-checkout by listing your desired sub-trees in .git/info/sparse-checkout:
+
+echo some/dir/ >> .git/info/sparse-checkout
+echo another/sub/tree >> .git/info/sparse-checkout
+Checkout from the remote:
+
+git pull <remote> <branch>
+
+En el caso de este proyecto
+
+cd /opt
+sudo mkdir SelfieOverTable
+sudo shown pi:pi SelfieOverTable
+cd SelfieOverTable
+git init
+git remote add -f origin https://github.com/ImagineXYZ/SelfieOverTable.git
+git config core.sparsecheckout true
+echo RPI3_SOT/ >> .git/info/sparse-checkout
+git pull origin master
