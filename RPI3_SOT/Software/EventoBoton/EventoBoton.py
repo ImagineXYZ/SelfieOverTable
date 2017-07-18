@@ -13,6 +13,12 @@ import datetime
 import time
 import signal #Kill Signal
 
+#Modulo Camera
+import picamera
+camera = picamera.PiCamera()
+camera.hflip = True
+camera.vflip = True
+
 #Debug Params
 debug=1
 
@@ -142,6 +148,8 @@ if __name__ == '__main__':
 			#Print Packet Receives
 			print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
 			theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
+			pixels_color(led_strip,Color(255, 255, 255))
+			camera.capture('/home/pi/Pictures/image.jpg')
 			pixels_color(led_strip,Color(0, 0, 0))
 			rf.receiveBegin()
 		else:
