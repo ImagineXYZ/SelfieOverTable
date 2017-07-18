@@ -5,6 +5,9 @@ import RFM69
 from RFM69registers import *
 import RPi.GPIO as GPIO
 
+#Biblioteca Neopixels
+from neopixel import *
+
 #Bibliotecas Tiempo y flujo de programa
 import datetime
 import time
@@ -12,6 +15,19 @@ import signal #Kill Signal
 
 #Debug Params
 debug=1
+
+#Parametros Neopixels
+# LED Ring configuration:
+LED_COUNT      = 16      # Number of LED pixels.
+LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
+LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
+LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
+LED_BRIGHTNESS = 100     # Set to 0 for darkest and 255 for brightest
+LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
+LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+LED_STRIP      = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
+
+#Funciones RF
 
 def InitRF():
 	global rf
@@ -68,13 +84,31 @@ def InitRF():
 	rf.writeReg(0x4B, 0x36)
 	rf.writeReg(0x4C, 0x37)
 	rf.writeReg(0x4D, 0x38)
-
+	
 def ShutdownRF():
 	if(debug==1):
 		print "Shutting down"
 	rf.shutdown()
-	
 
+#Funciones Neopixels
+	
+def theaterChase(strip, color, wait_ms=50, iterations=10):
+	"""Movie theater light style chaser animation."""
+	for j in range(iterations):
+		for q in range(3):
+			for i in range(0, strip.numPixels(), 3):
+				strip.setPixelColor(i+q, color)
+			strip.show()
+			time.sleep(wait_ms/1000.0)
+			for i in range(0, strip.numPixels(), 3):
+				strip.setPixelColor(i+q, 0)
+				
+def pixels_color(strip,color):
+	for i in range(strip.numPixels()):
+		strip.setPixelColor(i, color)
+	strip.show()
+	
+		
 class GracefulKiller:
   kill_now = False
   def __init__(self):
@@ -87,6 +121,12 @@ class GracefulKiller:
 if __name__ == '__main__':
 	#Kill Signal Handler
 	killer = GracefulKiller()
+	
+	# Create NeoPixel object
+	led_strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL, LED_STRIP)
+	# Intialize Neopixel
+	led_strip.begin()
+	pixels_color(led_strip,Color(0, 0, 0))
 	#Initialize RFM69
 	InitRF()
 	if(debug==1):
@@ -101,6 +141,8 @@ if __name__ == '__main__':
 		if rf.receiveDone():
 			#Print Packet Receives
 			print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
+			theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
+			pixels_color(led_strip,Color(0, 0, 0))
 			rf.receiveBegin()
 		else:
 			time.sleep(.1)
