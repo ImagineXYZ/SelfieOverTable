@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+#Debug Params
+debug=1
+
 #Bibliotecas RFM69
 import RFM69
 from RFM69registers import *
@@ -13,15 +16,24 @@ import datetime
 import time
 import signal #Kill Signal
 
+#Modulo correos (gmail)
+import yagmail
+
+mail_user = 'xxxx'
+mail_pass = 'yyyy'
+to = 'xxxx@yyyyy'
+subject = 'SelfieOverTable'
+img = '/home/pi/Pictures/image.jpg'
+
 #Modulo Camera
 import picamera
 camera = picamera.PiCamera()
 camera.resolution = (1440,1080)
 camera.hflip = True
 camera.vflip = True
+#Test capture
+camera.capture('/home/pi/Pictures/image.jpg')
 
-#Debug Params
-debug=1
 
 #Parametros Neopixels
 # LED Ring configuration:
@@ -151,6 +163,13 @@ if __name__ == '__main__':
 			theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
 			pixels_color(led_strip,Color(255, 255, 255))
 			camera.capture('/home/pi/Pictures/image.jpg')
+			pixels_color(led_strip,Color(0, 255, 0))
+			#Prepare Email Info
+			t = datetime.datetime.now()
+			body = "Mesa: XYZ \n" + t.strftime("%Y-%m-%d %H:%M:%S")
+			#Send Email with picture
+			yag = yagmail.SMTP(mail_user , mail_pass)
+			yag.send(to = to, subject = subject, contents = [body, img])
 			pixels_color(led_strip,Color(0, 0, 0))
 			rf.receiveBegin()
 		else:
