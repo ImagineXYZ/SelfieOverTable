@@ -1,12 +1,20 @@
 #!/usr/bin/env python2
 
+#Configuration Files
+import ConfigParser
+settings= ConfigParser.ConfigParser()
+settings.read("/home/pi/.EventoBoton.cfg")
+CMData = ConfigParser.ConfigParser()
+CMData.read("/home/pi/.CorreoCM.cfg")
+
 #Debug Params
 debug=1
 
 #Email Params
-mail_user = 'x'
-mail_pass = 'y'
-to = 'a@b.com'
+
+mail_user = settings.get("CorreoClienteGmail", "user")
+mail_pass = settings.get("CorreoClienteGmail", "pass")
+to = CMData.get('CorreoComunityManager','email')
 subject = 'SelfieOverTable'
 img = '/home/pi/Pictures/image.jpg'
 
