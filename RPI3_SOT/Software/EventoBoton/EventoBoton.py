@@ -19,9 +19,9 @@ import signal #Kill Signal
 #Modulo correos (gmail)
 import yagmail
 
-mail_user = 'xxxx'
-mail_pass = 'yyyy'
-to = 'xxxx@yyyyy'
+mail_user = 'x'
+mail_pass = 'y'
+to = 'a@b.com'
 subject = 'SelfieOverTable'
 img = '/home/pi/Pictures/image.jpg'
 
@@ -31,8 +31,10 @@ camera = picamera.PiCamera()
 camera.resolution = (1440,1080)
 camera.hflip = True
 camera.vflip = True
+
+time.sleep(1)
 #Test capture
-camera.capture('/home/pi/Pictures/image.jpg')
+#camera.capture('/home/pi/Pictures/image.jpg')
 
 
 #Parametros Neopixels
@@ -160,9 +162,16 @@ if __name__ == '__main__':
 		if rf.receiveDone():
 			#Print Packet Receives
 			print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
+			#"Count down" Animation
 			theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
+			#White stop
 			pixels_color(led_strip,Color(255, 255, 255))
+			time.sleep(0.5) #Delay
+			#LEDs off
+			pixels_color(led_strip,Color(0, 0, 0))
+			#Capture Picture on Pictures Folder
 			camera.capture('/home/pi/Pictures/image.jpg')
+			#Green, wait to send email
 			pixels_color(led_strip,Color(0, 255, 0))
 			#Prepare Email Info
 			t = datetime.datetime.now()
@@ -170,7 +179,9 @@ if __name__ == '__main__':
 			#Send Email with picture
 			yag = yagmail.SMTP(mail_user , mail_pass)
 			yag.send(to = to, subject = subject, contents = [body, img])
+			#LEDs off
 			pixels_color(led_strip,Color(0, 0, 0))
+			#Wait for another button trigger
 			rf.receiveBegin()
 		else:
 			time.sleep(.1)
