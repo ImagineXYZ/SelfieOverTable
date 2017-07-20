@@ -1,0 +1,18 @@
+Forward Design Changes Report
+-----------------------------
+
+Report Written:     Wednesday, July 19, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.pcb
+Design Title:       
+Created:            19/07/2017 11:27:50 a.m.
+Last Saved:         19/07/2017 11:43:11 a.m.
+Editing Time:       16 min
+Units:              mm (precision 3)
+
+Disconnected pin "CONN1-13" from net "GND".
+
+Connected pin "CONN1-5" to net "GND".
+
+
+End Of Report.

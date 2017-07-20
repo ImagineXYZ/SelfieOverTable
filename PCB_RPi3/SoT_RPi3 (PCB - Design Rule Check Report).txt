@@ -1,0 +1,65 @@
+Design Rule Check Report
+------------------------
+
+Report Written:     Wednesday, July 19, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.pcb
+Design Title:       
+Created:            19/07/2017 11:27:50 a.m.
+Last Saved:         19/07/2017 11:54:07 a.m.
+Editing Time:       26 min
+Units:              mm (precision 3)
+
+
+Results
+=======
+
+Dangling Track from (510.476,530.289) to (510.540,530.225) on layer Top Copper
+
+Number of errors found : 1
+
+
+Settings
+========
+
+
+Spacings
+
+=========
+
+Tracks        Yes
+Pads and Vias Yes
+Shapes        Yes
+Text          Yes
+Board         Yes
+Drills        Yes
+Components    Yes
+
+
+Manufacturing
+
+==============
+
+Drill Breakout                  No
+Drill Backoff                   No
+Silkscreen Overlap              No
+Copper Text In Board            No
+Min Track Width                 No
+Min Annular Ring                No
+Min Paste Size                  No
+Vias In Pads                    No
+Unplated Vias                   No
+Unplated Pads With Inner Tracks No
+
+
+Nets
+
+=====
+
+Net Completion               Yes
+Dangling Tracks              Yes
+Net Track Length Differences No
+
+
+
+End Of Report.
