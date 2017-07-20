@@ -3,6 +3,50 @@
 #Debug Params
 debug=1
 
+#Email Params
+mail_user = 'x'
+mail_pass = 'y'
+to = 'a@b.com'
+subject = 'SelfieOverTable'
+img = '/home/pi/Pictures/image.jpg'
+
+#Function as a Service imports and defs
+import logging
+import logging.handlers
+import sys
+# Deafults
+LOG_FILENAME = "/tmp/EventoBoton.log"
+LOG_LEVEL = logging.INFO  # Could be e.g. "DEBUG" or "WARNING"
+# Configure logging to log to a file, making a new file at midnight and keeping the last 3 day's data
+# Give the logger a unique name (good practice)
+logger = logging.getLogger(__name__)
+# Set the log level to LOG_LEVEL
+logger.setLevel(LOG_LEVEL)
+# Make a handler that writes to a file, making a new file at midnight and keeping 3 backups
+handler = logging.handlers.TimedRotatingFileHandler(LOG_FILENAME, when="midnight", backupCount=3)
+# Format each log message like this
+formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+# Attach the formatter to the handler
+handler.setFormatter(formatter)
+# Attach the handler to the logger
+logger.addHandler(handler)
+# Make a class we can use to capture stdout and sterr in the log
+class Logger_Service(object):
+	def __init__(self, logger, level):
+		"""Needs a logger and a logger level."""
+		self.logger = logger
+		self.level = level
+
+	def write(self, message):
+		# Only log if there is a message (not just a new line)
+		if message.rstrip() != "":
+			self.logger.log(self.level, message.rstrip())
+
+# Replace stdout with logging to file at INFO level
+sys.stdout = Logger_Service(logger, logging.INFO)
+# Replace stderr with logging to file at ERROR level
+sys.stderr = Logger_Service(logger, logging.ERROR)
+
 #Bibliotecas RFM69
 import RFM69
 from RFM69registers import *
@@ -19,11 +63,6 @@ import signal #Kill Signal
 #Modulo correos (gmail)
 import yagmail
 
-mail_user = 'x'
-mail_pass = 'y'
-to = 'a@b.com'
-subject = 'SelfieOverTable'
-img = '/home/pi/Pictures/image.jpg'
 
 #Modulo Camera
 import picamera
@@ -54,12 +93,15 @@ def InitRF():
 	global rf
 	rf = RFM69.RFM69(RF69_915MHZ, 3, 1, True)
 	if(debug==1):
-		print "RF class initialized"
+		#print "RF class initialized"
+		logger.info("RF class initialized")
 	rf.rcCalibration()
 	if(debug==1):
-		print "RF Calibrated"
+		#print "RF Calibrated"
+		logger.info("RF Calibrated")
 	if(debug==1):
-		print "RF Registry Override"
+		#print "RF Registry Override"
+		logger.info("RF Registry Override")
 	rf.writeReg(0x03, 0x00)
 	rf.writeReg(0x04, 0x80)
 	rf.writeReg(0x05, 0x10)
@@ -108,7 +150,8 @@ def InitRF():
 	
 def ShutdownRF():
 	if(debug==1):
-		print "Shutting down"
+		#print "Shutting down"
+		logger.info("Shutting down")
 	rf.shutdown()
 
 #Funciones Neopixels
@@ -151,17 +194,20 @@ if __name__ == '__main__':
 	#Initialize RFM69
 	InitRF()
 	if(debug==1):
-		print "Receiving Packets\n"
+		#print "Receiving Packets\n"
+		logger.info("Receiving Packets\n")
 	if(debug==1):
-		print "Waiting\n"
+		#print "Waiting\n"
+		logger.info("Waiting\n")
 		
 	#Receive Packets from RFM69 (Remote Button)	
 	rf.receiveBegin()
 	while True:
 		#Non blocking receive sequence
 		if rf.receiveDone():
-			#Print Packet Receives
-			print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
+			#Print Packet Received
+			#print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
+			logger.info("".join([chr(letter) for letter in rf.DATA]))
 			#"Count down" Animation
 			theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
 			#White stop
@@ -191,4 +237,5 @@ if __name__ == '__main__':
 	#Shutdown RFM69	
 	ShutdownRF()
 	if(debug==1):
-		print "End of the program"
+		#print "End of the program"
+		logger.info("End of the program")

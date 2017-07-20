@@ -1,0 +1,34 @@
+Para ejecutar el programa de Evento Botón automáticamente cuando inicia 
+el sistema se integra como un servicio de tipo LSB.
+
+Ref: http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/
+Ref: https://wiki.debian.org/LSBInitScripts
+
+Instalación del servicio
+
+Para evitar problemas de lineendings
+sudo apt install dos2unix
+sudo dos2unix Service_EventoBoton.sh
+
+En la carpeta de Software/EventoBoton está el script para incluir este servicio
+sudo chmod +x Service_EventoBoton.sh
+sudo chmod +x EventoBoton.py
+sudo cp Service_EventoBoton.sh /etc/init.d
+sudo update-rc.d EventoBoton.sh defaults
+
+Verificar que se crearon los SymLinks a la carpeta /etc/init.d
+ls -l /etc/rc?.d/*Service_EventoBoton.sh
+
+Para iniciar el servicio
+sudo /etc/init.d/Service_EventoBoton.sh start
+
+Ver el estado
+sudo /etc/init.d/Service_EventoBoton.sh status
+
+Detenerlo
+sudo /etc/init.d/Service_EventoBoton.sh stop
+
+Leer los logs almacenados en tmp con cat (ó con cualquier otro visualizador/
+editor de texto)
+sudo cat /tmp/EventoBoton.log
+
