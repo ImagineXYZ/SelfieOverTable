@@ -67,6 +67,7 @@ from neopixel import *
 import datetime
 import time
 import signal #Kill Signal
+first=0
 
 #Modulo correos (gmail)
 import yagmail
@@ -163,7 +164,94 @@ def ShutdownRF():
 	rf.shutdown()
 
 #Funciones Neopixels
+def pixels_color(strip,color):
+	for i in range(strip.numPixels()):
+		strip.setPixelColor(i, color)
+	strip.show()
 	
+	
+def TimerEffect(strip, start_time, wait_for, color, color_finish):
+	elapsed_time = time.time() - start_time
+	ratio=elapsed_time/wait_for
+	n=strip.numPixels()
+	x=n*ratio
+	if(ratio<1):
+		for i in range(int(x)):
+			strip.setPixelColor(i, color_finish)
+		for i in range(int(n-x+1)):
+			strip.setPixelColor(i+int(x), color)
+		strip.show()
+	else:
+		global first
+		if (first==1):
+			pixels_color(strip,Color(0,0,0))
+			time.sleep(0.4)
+			pixels_color(strip,color_finish)
+			time.sleep(0.4)
+			pixels_color(strip,Color(0,0,0))
+			time.sleep(0.4)
+			pixels_color(strip,color_finish)
+			time.sleep(0.4)
+			pixels_color(strip,Color(0,0,0))
+			first=0
+		
+def TimerEffect2(strip, start_time, wait_for, color, color_finish):
+	elapsed_time = time.time() - start_time
+	ratio=elapsed_time/wait_for
+	n=strip.numPixels()
+	x=n*ratio
+	if(ratio<1):
+		for i in range(int(x)+1):
+			strip.setPixelColor(i, color_finish)
+		for i in range(int(n-x+2)):
+			strip.setPixelColor(i+int(x), color)
+		strip.show()
+	else:
+		pixels_color(strip,color_finish)
+
+def TakePictureEffect(strip):
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.2)
+	pixels_color(strip,Color(100, 100, 100))
+	time.sleep(0.5)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.3)
+	pixels_color(strip,Color(100, 100, 100))
+	time.sleep(0.5)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.3)
+	pixels_color(strip,Color(100, 100, 100))
+	time.sleep(0.5)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.3)
+	pixels_color(strip,Color(255, 255, 255))
+	time.sleep(0.2)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.15)
+	pixels_color(strip,Color(255, 255, 255))
+	time.sleep(0.15)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.15)
+	pixels_color(strip,Color(255, 255, 255))
+	time.sleep(0.10)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.10)
+	pixels_color(strip,Color(255, 255, 255))
+	time.sleep(0.10)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.10)
+	pixels_color(strip,Color(255, 255, 255))
+	time.sleep(0.10)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.08)
+	pixels_color(strip,Color(255, 255, 255))
+	time.sleep(0.08)
+	pixels_color(strip,Color(0, 0, 0))
+	time.sleep(0.5)
+	#White stop
+	pixels_color(led_strip,Color(255, 255, 255))
+	time.sleep(0.6) #Delay	
+			
 def theaterChase(strip, color, wait_ms=50, iterations=10):
 	"""Movie theater light style chaser animation."""
 	for j in range(iterations):
@@ -175,11 +263,7 @@ def theaterChase(strip, color, wait_ms=50, iterations=10):
 			for i in range(0, strip.numPixels(), 3):
 				strip.setPixelColor(i+q, 0)
 				
-def pixels_color(strip,color):
-	for i in range(strip.numPixels()):
-		strip.setPixelColor(i, color)
-	strip.show()
-	
+
 		
 class GracefulKiller:
   kill_now = False
@@ -210,35 +294,44 @@ if __name__ == '__main__':
 		
 	#Receive Packets from RFM69 (Remote Button)	
 	rf.receiveBegin()
+	start_time=time.time()
+	first=0
 	while True:
 		#Non blocking receive sequence
 		if rf.receiveDone():
-			#Print Packet Received
-			#print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
-			logger.info("".join([chr(letter) for letter in rf.DATA]))
-			#"Count down" Animation
-			theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
-			#White stop
-			pixels_color(led_strip,Color(255, 255, 255))
-			time.sleep(0.5) #Delay
-			#LEDs off
-			pixels_color(led_strip,Color(0, 0, 0))
-			#Capture Picture on Pictures Folder
-			camera.capture('/home/pi/Pictures/image.jpg')
-			#Green, wait to send email
-			pixels_color(led_strip,Color(0, 255, 0))
-			#Prepare Email Info
-			t = datetime.datetime.now()
-			body = "Mesa: XYZ \n" + t.strftime("%Y-%m-%d %H:%M:%S")
-			#Send Email with picture
-			yag = yagmail.SMTP(mail_user , mail_pass)
-			yag.send(to = to, subject = subject, contents = [body, img])
-			#LEDs off
-			pixels_color(led_strip,Color(0, 0, 0))
-			#Wait for another button trigger
+			if (first==0):
+				#Print Packet Received
+				#print "%s from %s RSSI:%s" % ("".join([chr(letter) for letter in rf.DATA]), rf.SENDERID, rf.RSSI)
+				logger.info("".join([chr(letter) for letter in rf.DATA]))
+				#"Count down" Animation
+				start_time=time.time()
+				while((time.time()-start_time)<1.1):
+					TimerEffect2(led_strip,start_time, 1, Color(0, 0, 0), Color(255, 255, 0))
+				#theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
+				TakePictureEffect(led_strip)
+				#LEDs off
+				pixels_color(led_strip,Color(0, 0, 0))
+				#Capture Picture on Pictures Folder
+				camera.capture('/home/pi/Pictures/image.jpg')
+				#Green, wait to send email
+				pixels_color(led_strip,Color(20, 00, 0))
+				#Prepare Email Info
+				t = datetime.datetime.now()
+				body = "Mesa: XYZ \n" + t.strftime("%Y-%m-%d %H:%M:%S")
+				#Send Email with picture
+				yag = yagmail.SMTP(mail_user , mail_pass)
+				yag.send(to = to, subject = subject, contents = [body, img])
+				#LEDs off
+				pixels_color(led_strip,Color(0, 0, 0))
+				first=1
+				#Wait for another button trigger
+				rf.receiveBegin()
+				start_time=time.time()
 			rf.receiveBegin()
 		else:
 			time.sleep(.1)
+			if(first==1):
+				TimerEffect(led_strip,start_time, 10, Color(100, 0, 0), Color(255, 255, 0))
 		#Kill signal evaluation
 		if killer.kill_now:
 		  break
