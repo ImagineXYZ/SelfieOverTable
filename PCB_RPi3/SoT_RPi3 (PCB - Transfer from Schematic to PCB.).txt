@@ -1,0 +1,15 @@
+Transfer from Schematic to PCB.
+-------------------------------
+
+Report Written:     Wednesday, July 19, 2017
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.pcb
+Design Title:       
+Created:            19/07/2017 11:27:50 a.m.
+Last Saved:         19/07/2017 11:28:06 a.m.
+Editing Time:       0 min
+Units:              mm (precision 3)
+
+Net class "Signal" was not defined, but has been created. Please check the values in the PCB design.
+Net class "Ground" was not defined, but has been created. Please check the values in the PCB design.
+
+End Of Report.

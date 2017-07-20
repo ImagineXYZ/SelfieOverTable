@@ -1,0 +1,206 @@
+Plot Report
+-----------
+
+Report Written:     Wednesday, July 19, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3.pcb
+Design Title:       
+Created:            19/07/2017 11:27:50 a.m.
+Last Saved:         19/07/2017 11:55:44 a.m.
+Editing Time:       29 min
+Units:              mm (precision 3)
+
+
+Device Settings
+===============
+
+
+Gerber Settings
+===============
+
+    Leading zero suppression.
+    G01 assumed throughout.
+    Line termination <*> <CR> <LF>.
+    3.5 format absolute inches.
+    Format commands defined in Gerber file.
+    Aperture table defined in Gerber file.
+
+
+Drill Settings
+==============
+
+    Excellon Format 1    Format 3.5 absolute in inches.
+    No zero suppression.
+
+
+Plots Output
+============
+
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Top Copper.gbr
+
+    Layers:
+    --------------
+    Top Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D18    Square 78.74
+    D19    Round 78.74
+    D71    Square 82.68
+    D20    Round 82.68
+    D28    Octagon 78.74
+    D73    Round 23.62
+    D122   Round 29.53
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Top Copper (Resist).gbr
+
+    Layers:
+    --------------
+    Top Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D117   Round 88.74
+    D119   Square 92.68
+    D120   Round 92.68
+    D124   Square 88.74
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Top Copper (Paste).gbr
+
+    Layers:
+    --------------
+    Top Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Top Silkscreen.gbr
+
+    Layers:
+    ------------------
+    Top Silkscreen
+
+    D-Code Shape  (thou)
+    -----------------------
+    D15    Round 5.00
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Bottom Copper.gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D18    Square 78.74
+    D19    Round 78.74
+    D71    Square 82.68
+    D20    Round 82.68
+    D28    Octagon 78.74
+    D122   Round 29.53
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Bottom Copper (Resist).gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D117   Round 88.74
+    D119   Square 92.68
+    D120   Round 92.68
+    D124   Square 88.74
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Bottom Copper (Paste).gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Bottom Silkscreen.gbr
+
+    Layers:
+    ---------------------
+    Bottom Silkscreen
+
+    D-Code Shape  (thou)
+    -----------------------
+    D15    Round 5.00
+
+NC Drill Output
+===============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Drill Data - [Through Hole].drl
+
+    Output:
+    -----------------------------
+    Plated Round Drill Holes
+    Unplated Round Drill Holes
+    Plated Slots
+    Unplated Slots
+    Plated Board Outlines
+    Unplated Board Outlines
+
+    Tool  Size         Count   ID  (Plated/Unplated)
+    ---------------------------------------------------------
+    T001  000.02362 in 4     F
+    T002  000.02500 in 1
+    T003  000.03543 in 72    A
+    ---------------------------------------------------------
+    Total              77
+    ---------------------------------------------------------
+
+
+Gerber Output
+=============
+
+C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_RPi3\SoT_RPi3 - Drill Ident Drawing - [Through Hole].gbr
+
+    Layers:
+    ------------------
+    [Through Hole]
+
+
+Drill Ident Drawing
+===================
+
+    Drill Plated Size Shape ID
+    -----------------------------------
+    35    Y      100  Round A
+    24    Y      100  Round F
+
+    D-Code Shape  (thou)
+    -----------------------
+    D14    Round 100.00
+    D15    Round 5.00
+
+End Of Report.
