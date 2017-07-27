@@ -6,7 +6,6 @@ settings= ConfigParser.ConfigParser()
 settings.read("/home/pi/.EventoBoton.cfg")
 CMData = ConfigParser.ConfigParser()
 CMData.read("/home/pi/.CorreoCM.cfg")
-
 #Debug Params
 debug=1
 
@@ -79,10 +78,12 @@ camera = picamera.PiCamera()
 camera.resolution = (1440,1080)
 camera.hflip = True
 camera.vflip = True
-
+camera.iso=800
+time.sleep(2)
+camera.shutter_speed = camera.exposure_speed
+camera.exposure_mode='off'
 time.sleep(1)
-#Test capture
-#camera.capture('/home/pi/Pictures/image.jpg')
+
 
 
 #Parametros Neopixels
@@ -169,7 +170,11 @@ def pixels_color(strip,color):
 		strip.setPixelColor(i, color)
 	strip.show()
 	
-	
+def BlinkEffect(strip, color, duration):
+	pixels_color(strip,color)
+	time.sleep(duration)
+	pixels_color(strip,Color(0, 0, 0))
+
 def TimerEffect(strip, start_time, wait_for, color, color_finish):
 	elapsed_time = time.time() - start_time
 	ratio=elapsed_time/wait_for
@@ -210,10 +215,10 @@ def TimerEffect2(strip, start_time, wait_for, color, color_finish):
 		pixels_color(strip,color_finish)
 
 def TakePictureEffect(strip):
-	pixels_color(strip,Color(0, 0, 0))
-	time.sleep(0.2)
-	pixels_color(strip,Color(100, 100, 100))
-	time.sleep(0.5)
+	#pixels_color(strip,Color(0, 0, 0))
+	#time.sleep(0.2)
+	#pixels_color(strip,Color(100, 100, 100))
+	#time.sleep(0.5)
 	pixels_color(strip,Color(0, 0, 0))
 	time.sleep(0.3)
 	pixels_color(strip,Color(100, 100, 100))
@@ -247,7 +252,10 @@ def TakePictureEffect(strip):
 	pixels_color(strip,Color(255, 255, 255))
 	time.sleep(0.08)
 	pixels_color(strip,Color(0, 0, 0))
-	time.sleep(0.5)
+	#Capture Picture on Pictures Folder
+	time.sleep(0.1)
+	camera.capture('/home/pi/Pictures/image.jpg')	
+	time.sleep(0.1)
 	#White stop
 	pixels_color(led_strip,Color(255, 255, 255))
 	time.sleep(0.6) #Delay	
@@ -293,9 +301,18 @@ if __name__ == '__main__':
 		logger.info("Waiting\n")
 		
 	#Receive Packets from RFM69 (Remote Button)	
-	rf.receiveBegin()
-	start_time=time.time()
+	
+	#Wait for interrupt initialization
+	#time.sleep(2)
+	
+	
 	first=0
+	#Capture to init the camera
+	camera.capture('/home/pi/Pictures/image.jpg')
+	#Ready Indication
+	BlinkEffect(led_strip,Color(0,0,255),0.5)
+	#start_time=time.time()
+	rf.receiveBegin()
 	while True:
 		#Non blocking receive sequence
 		if rf.receiveDone():
@@ -305,14 +322,14 @@ if __name__ == '__main__':
 				logger.info("".join([chr(letter) for letter in rf.DATA]))
 				#"Count down" Animation
 				start_time=time.time()
-				while((time.time()-start_time)<1.1):
-					TimerEffect2(led_strip,start_time, 1, Color(0, 0, 0), Color(255, 255, 0))
+				while((time.time()-start_time)<0.6):
+					TimerEffect2(led_strip,start_time, 0.5, Color(0, 0, 0), Color(255, 255, 0))
 				#theaterChase(led_strip, Color(255, 255, 255),18,8)  # White theater chase
 				TakePictureEffect(led_strip)
 				#LEDs off
 				pixels_color(led_strip,Color(0, 0, 0))
 				#Capture Picture on Pictures Folder
-				camera.capture('/home/pi/Pictures/image.jpg')
+				#camera.capture('/home/pi/Pictures/image.jpg')
 				#Green, wait to send email
 				pixels_color(led_strip,Color(20, 00, 0))
 				#Prepare Email Info
@@ -328,9 +345,9 @@ if __name__ == '__main__':
 				rf.receiveBegin()
 				start_time=time.time()
 			rf.receiveBegin()
-		else:
+		else: #Wait for next time avaliable 
 			time.sleep(.1)
-			if(first==1):
+			if(first==1): #No effect on startup
 				TimerEffect(led_strip,start_time, 10, Color(100, 0, 0), Color(255, 255, 0))
 		#Kill signal evaluation
 		if killer.kill_now:
