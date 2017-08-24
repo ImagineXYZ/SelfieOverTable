@@ -1,0 +1,27 @@
+Forward Design Changes Report
+-----------------------------
+
+Report Written:     Friday, August 18, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_BotonSimple\BotonSimple.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_BotonSimple\BotonSimple.pcb
+Design Title:       
+Created:            31/05/2017 07:25:24 p.m.
+Last Saved:         18/08/2017 03:00:53 p.m.
+Editing Time:       1332 min
+Units:              mm (precision 3)
+
+Disconnected pin "ConnFeather-1" from net "3V3".
+Disconnected pin "ConnFeather-2" from net "GND".
+Disconnected pin "ConnFeather-3" from net "DataNeoPixI".
+Disconnected pin "ConnFeather-4" from net "ButtonSig".
+
+Deleted component reference "ConnFeather".
+
+Added component reference "CONN1" of component "3P", package "SOL".
+
+Connected pin "CONN1-1" to net "3V3".
+Connected pin "CONN1-2" to net "ButtonSig".
+Connected pin "CONN1-3" to net "GND".
+
+
+End Of Report.

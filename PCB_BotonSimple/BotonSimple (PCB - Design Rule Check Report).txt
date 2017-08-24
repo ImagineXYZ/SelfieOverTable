@@ -1,0 +1,64 @@
+Design Rule Check Report
+------------------------
+
+Report Written:     Friday, August 18, 2017
+Project Path:       C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_BotonSimple\BotonSimple.prj
+Design Path:        C:\users\bryanmtdt\My Documents\git\SelfieOverTable\PCB_BotonSimple\BotonSimple.pcb
+Design Title:       
+Created:            31/05/2017 07:25:24 p.m.
+Last Saved:         18/08/2017 03:21:39 p.m.
+Editing Time:       1353 min
+Units:              mm (precision 3)
+
+
+Results
+=======
+
+
+No errors found
+
+
+Settings
+========
+
+
+Spacings
+
+=========
+
+Tracks        Yes
+Pads and Vias Yes
+Shapes        Yes
+Text          Yes
+Board         Yes
+Drills        Yes
+Components    No
+
+
+Manufacturing
+
+==============
+
+Drill Breakout                  No
+Drill Backoff                   No
+Silkscreen Overlap              No
+Copper Text In Board            No
+Min Track Width                 No
+Min Annular Ring                No
+Min Paste Size                  No
+Vias In Pads                    No
+Unplated Vias                   No
+Unplated Pads With Inner Tracks No
+
+
+Nets
+
+=====
+
+Net Completion               Yes
+Dangling Tracks              Yes
+Net Track Length Differences No
+
+
+
+End Of Report.
