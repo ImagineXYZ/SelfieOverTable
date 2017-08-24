@@ -1,0 +1,15 @@
+Evento Boton usa 2 archivos de configuración, que por defecto estarían almacenados en el home del pi (/home/pi/)
+
+Las plantillas de los archivos estan en la carpeta de Software/EventoBoton
+
+Los archivos con
+.EventoBoton.cfg
+.CorreoCM.cfg
+
+Estos archivos son de tipo oculto (empiezan con .)
+
+En EventoBoton.cfg se almacenan variables generales del programa. Correo del cliente de gmail con el que se envían los correos.
+En CorreoCM se almacena el correo de destino al que se le envian las fotografías.
+
+
+Copiar estos archivos a /home/pi o a la carpeta que se requiera cambiando la configuración en EventoBoton.py
